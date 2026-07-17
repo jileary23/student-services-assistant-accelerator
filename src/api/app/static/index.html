@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Services Assistant</title>
+  <script>
+    (() => {
+      const param = new URLSearchParams(window.location.search).get("scoutTheme");
+      const theme =
+        param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <aside class="service-nav" aria-label="Student services topics">
+      <div class="brand-block">
+        <span id="brand-mark" class="brand-mark" aria-hidden="true">CU</span>
+        <div>
+          <strong id="institution-name">Contoso University</strong>
+          <span>Student Services</span>
+        </div>
+      </div>
+      <nav>
+        <p class="nav-label">Popular topics</p>
+        <button class="topic-button active" data-prompt="When is the fall registration deadline?">Registration</button>
+        <button class="topic-button" data-prompt="What documents are needed for financial aid?">Financial aid</button>
+        <button class="topic-button" data-prompt="How do I apply for campus housing?">Housing</button>
+        <button class="topic-button" data-prompt="How do I reset my student account password?">Account help</button>
+      </nav>
+      <div class="privacy-note">
+        <strong>Your privacy matters</strong>
+        <span>Do not share Social Security numbers, passwords, or medical details.</span>
+        <a id="university-source" href="#" target="_blank" rel="noreferrer" hidden>University source</a>
+      </div>
+    </aside>
+
+    <section class="chat-workspace" aria-label="Chat with Student Services">
+      <header class="chat-header">
+        <div>
+          <p class="eyebrow">Available 24/7</p>
+          <h1>How can we help?</h1>
+        </div>
+        <span class="status"><span aria-hidden="true"></span> Approved content</span>
+      </header>
+
+      <div id="messages" class="messages" aria-live="polite">
+        <article class="message assistant-message">
+          <div class="avatar" aria-hidden="true">S</div>
+          <div class="message-content">
+            <p>Hello. I can help with registration, financial aid, housing, admissions, and account basics.</p>
+            <p>Ask a general question, and I’ll use university-approved information to answer.</p>
+          </div>
+        </article>
+        <div class="suggestions" aria-label="Suggested questions">
+          <button data-prompt="When is the fall registration deadline?">Fall registration deadline</button>
+          <button data-prompt="What documents are needed for financial aid?">Financial aid documents</button>
+          <button data-prompt="How do I apply for campus housing?">Campus housing</button>
+        </div>
+      </div>
+
+      <form id="chat-form" class="composer">
+        <label for="message-input" class="sr-only">Ask Student Services</label>
+        <textarea id="message-input" rows="1" maxlength="4000" placeholder="Ask Student Services" required></textarea>
+        <button id="send-button" type="submit">Send</button>
+        <p>Answers may be incomplete. Confirm deadlines and decisions with university staff.</p>
+      </form>
+    </section>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Open Agent Inspector",
+      "type": "shell",
+      "command": "${command:ai-mlstudio.openAgentInspector}",
+      "problemMatcher": []
+    },
+    {
+      "label": "Test accelerator",
+      "type": "shell",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe -m pytest",
+      "group": "test",
+      "problemMatcher": []
+    }
+  ]
+}
