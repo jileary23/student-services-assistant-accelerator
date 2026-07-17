@@ -93,6 +93,10 @@ Each content file should have a clear title, one policy topic, effective dates w
 
 ## Azure Deployment
 
+New to Azure AI development? Follow the [step-by-step Azure deployment guide](docs/azure-deployment-guide.md). It explains the Azure account and permission requirements, tool installation, Foundry model availability, deployment, content indexing, testing, monitoring, troubleshooting, and cleanup from the beginning.
+
+The commands below are the abbreviated path for experienced Azure users.
+
 The included deployment is intentionally cost-optimized for a workshop:
 
 - Azure Container Apps consumption, `0.5` vCPU, `1 GiB`, scale from zero to three replicas.
@@ -216,6 +220,7 @@ The main cost drivers are model tokens, Search tier/replicas, Container Apps min
 ```text
 data/knowledge/        Approved workshop content
 data/imported/         Ignored, pending website review bundles
+docs/                  Beginner deployment and implementation guides
 evals/                 Evaluation cases and guidance
 infra/                 Bicep deployment
 scripts/customize.py   University website onboarding utility
