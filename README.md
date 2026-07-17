@@ -31,21 +31,11 @@ It answers questions from institution-approved content, cites its sources, and r
 
 ## Architecture
 
-```mermaid
-flowchart LR
-  Student[Student browser] --> App[Azure Container App<br/>FastAPI and web UI]
-  App --> Router[Deterministic safety router]
-  Router --> Search[Azure AI Search<br/>approved content index]
-  Search --> Agent[Microsoft Foundry<br/>Agent Framework model]
-  Agent --> App
-  App --> Monitor[Application Insights<br/>and Log Analytics]
-  Content[Approved Markdown<br/>or CMS export] --> Ingest[Ingestion pipeline]
-  Ingest --> Search
-  Staff[Student services staff] -. escalation .-> Student
-  SIS[SIS / CRM / case system] -. institution adapter .-> App
-```
+![Student Services Assistant architecture showing students, Azure Container Apps, managed identity, approved university content, Azure AI Search, Microsoft Foundry, Application Insights, and Log Analytics](docs/images/student-services-architecture.svg)
 
-The browser never calls Foundry or Search directly. The API owns routing, retrieval, prompt construction, citations, and escalation. A user-assigned managed identity gives the container app least-privilege access to ACR, Search, and Foundry.
+_Azure service icons are from the [Microsoft Azure Architecture Center](https://learn.microsoft.com/azure/architecture/icons/) and can also be browsed in [IconCloud](https://iconcloud.design/browse/Azure%20Icons)._
+
+The browser never calls Foundry or Search directly. The Container App owns deterministic safety routing, retrieval, prompt construction, citations, and escalation. Managed identity provides passwordless, least-privilege access to Search and Foundry.
 
 ## 1. Try It Locally
 
